@@ -1,1 +1,9 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+# BloQ
+
+Blog-like app posing as skills showcase for Q dev team interview.
+
+### Description
+
+### Scripts
+
+Use `npm run dev` to start development server.
