@@ -12,8 +12,8 @@ export async function getServerSideProps({ query }) {
     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
     const post = await res.json()
 
-    const authorId = post.userId
-    const resAuthor = await fetch(`https://jsonplaceholder.typicode.com/users/${authorId}`)
+    const { userId } = post
+    const resAuthor = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
     const author = await resAuthor.json()
 
     return { props: { post, author } }

@@ -16,7 +16,7 @@ const HomeScreen = ({ hello }) => {
                 <div className="homepageCta">
                     <Image
                         className="ctaImage"
-                        src="/reader.jpg"
+                        src="/imagePlaceholder.png"
                         width="400"
                         height="270"
                         alt="Coffee photo created by wayhomestudio"

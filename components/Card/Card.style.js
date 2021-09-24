@@ -1,30 +1,48 @@
 const style = () => ({
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     backgroundColor: 'lightgray',
     padding: '20px 30px',
     margin: '25px 0px',
-    maxWidth: '1000px',
+    maxWidth: '1400px',
     borderRadius: '10px',
 
-    '@media (max-width: 420px)': {
-        flexDirection: 'column'
+    '.cardContent': {
+        display: 'flex',
+        flexDirection: 'row',
+
+        '@media (max-width: 620px)': {
+            flexDirection: 'column'
+        }
+    },
+
+    Image: {
+        minWidth: '40%'
+    },
+
+    hr: {
+        border: '1px solid gray',
+        width: '100%'
     },
 
     '.cardText': {
-        padding: '20px 30px',
-        maxWidth: 600,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        padding: '10px 30px 5px 30px',
+        maxWidth: '60%',
         cursor: 'pointer',
 
-        '@media (max-width: 420px)': {
-            padding: '15px'
+        '@media (max-width: 620px)': {
+            padding: '5px',
+            maxWidth: '100%'
         }
     },
 
     '& .cardButton': {
-        marginTop: '95px',
         backgroundColor: 'gold',
         padding: '12px',
+        marginLeft: '-2px',
         width: 'fit-content',
         borderRadius: '10px',
         cursor: 'pointer',
