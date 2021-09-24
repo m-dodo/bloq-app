@@ -1,4 +1,3 @@
-import React from 'react'
 import Head from 'next/head'
 import helloMsg from '../global'
 import HomeScreen from '../components/HomeScreen/HomeScreen.component'

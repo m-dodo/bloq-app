@@ -2,7 +2,7 @@
 
 Blog-like app posing as skills showcase for Q dev team interview.
 
-### Description - WIP
+### Description
 
 I'm using Next.js with SSR, styled components by Emotion, PropTypes, ...
 
@@ -12,7 +12,10 @@ Use `npm run dev` to start development server.
 
 ### Time and troubles - WIP
 
-It took me some time to set up the linter.
-Had trouble with error saying "Module not found: @emotion/react" even when it was installed.
-To resolve those two took me 4 hours in total.
-Development: 11pm on Thursday - 1:30am.
+In the beginning I had trouble with error saying "Module not found: @emotion/react" even when it was installed.
+It was about new React version featuring `jsx` pragma support under the hood and I had to dig a lot to find it since it is recent. Solved the issue by setting up configuration in `.babelrc`.
+To resolve it took me 3 hours. The coding itself took me ...
+Development:
+
+-   Thursday 11pm - 1:30am
+-   Friday 9:30am -

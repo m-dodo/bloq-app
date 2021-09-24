@@ -5,7 +5,6 @@ import Listing from '../../components/Listing/Listing.component'
 import helloMsg from '../../global'
 
 const Posts = ({ posts }) => {
-    console.log(posts[0])
     return (
         <>
             <Head>

@@ -1,27 +1,27 @@
-import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-// import styled from '@emotion/styled'
+import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
 
-// import style from './Card.style'
+import style from './Card.style'
 
-// const CardStyled = styled.div(() => ({ ...style() }))
+const CardStyled = styled.div(() => ({ ...style() }))
 
 const Card = ({ hello, post }) => {
     console.log(hello, 'Card component')
     return (
-        <>
-            <div className="cardContent">
-                <Image src="/placeholder.jpg" width="80" height="200" alt="Article" />
-                <Link href="/posts/[id]" as={`/posts/${post.id}`} passHref={false}>
-                    <h3>{post.title}</h3>
-                    <p>Read more</p>
+        <CardStyled>
+            <Image src="/placeholder.jpg" width="130" height="200" alt="Article" />
+            <div className="cardText">
+                <Link href="/posts/[id]" as={`/posts/${post.id}`} passHref>
+                    <div>
+                        {' '}
+                        <h3>{post.title}</h3>
+                        <div className="cardButton">Read more</div>
+                    </div>
                 </Link>
             </div>
-
-            <hr />
-        </>
+        </CardStyled>
     )
 }
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import helloMsg from '../../global'
+import Post from '../../components/Post/Post.component'
 
-const Post = ({ post }) => {
-    console.log(post)
-
-    return <p>Post: {post.id}</p>
+const SinglePost = ({ post, author }) => {
+    return <Post post={post} author={author} hello={helloMsg} />
 }
 
 export async function getServerSideProps({ query }) {
@@ -12,13 +12,20 @@ export async function getServerSideProps({ query }) {
     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
     const post = await res.json()
 
-    return { props: { post } }
+    const authorId = post.userId
+    const resAuthor = await fetch(`https://jsonplaceholder.typicode.com/users/${authorId}`)
+    const author = await resAuthor.json()
+
+    return { props: { post, author } }
 }
 
-Post.propTypes = {
+SinglePost.propTypes = {
     post: PropTypes.shape({
+        id: PropTypes.number
+    }).isRequired,
+    author: PropTypes.shape({
         id: PropTypes.number
     }).isRequired
 }
 
-export default Post
+export default SinglePost

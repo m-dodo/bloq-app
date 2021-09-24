@@ -13,11 +13,9 @@ const style = () => ({
         }
     },
 
-    '.ListingCards': {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'spaceAround'
+    '.postAuthor': {
+        background: 'linear-gradient(white 50%, gold 50%)',
+        fontWeight: 'bold'
     }
 })
 
