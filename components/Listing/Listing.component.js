@@ -28,6 +28,7 @@ const Listing = ({ hello, h1, posts, comments, authors }) => {
     const [filteredPosts, setFilteredPosts] = useState(posts)
     const [search, setSearch] = useState('')
     const [filter, setFilter] = useState('')
+    const [result, setResult] = useState('')
 
     useEffect(() => {
         setFilteredPosts(posts.filter((post) => post.title.includes(search.toLowerCase())))
@@ -44,6 +45,11 @@ const Listing = ({ hello, h1, posts, comments, authors }) => {
             })
         )
     }, [filter, posts, authors])
+
+    useEffect(() => {
+        if (filteredPosts.length) setResult(`Found ${filteredPosts.length} post${filteredPosts.length > 1 ? 's' : ''}.`)
+        if (!filteredPosts.length) setResult(`No posts found, try again.`)
+    }, [filteredPosts])
 
     return (
         <ListingStyled>
@@ -64,11 +70,12 @@ const Listing = ({ hello, h1, posts, comments, authors }) => {
                     <Image src="/author.png" width="33px" height="10px" />
                     <input placeholder="Filter by author" value={filter} onChange={(e) => setFilter(e.target.value)} />
                 </div>
+                {(search || filter) && <div className="listingSearch result">{result}</div>}
             </div>
 
             <div className="listingCards">
                 {' '}
-                {filteredPosts.slice(0, 20).map((post) => (
+                {filteredPosts.map((post) => (
                     <Card
                         hello={hello}
                         post={post}

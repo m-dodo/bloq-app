@@ -4,8 +4,16 @@ const style = () => ({
     backgroundColor: 'lightgray',
     padding: '20px 30px',
     margin: '25px 0px',
-    maxWidth: '1400px',
-    borderRadius: '10px',
+    width: '1000px',
+    borderRadius: '5px',
+
+    '@media (max-width: 1100px)': {
+        width: '700px'
+    },
+
+    '@media (max-width: 620px)': {
+        width: '300px'
+    },
 
     '.cardContent': {
         display: 'flex',

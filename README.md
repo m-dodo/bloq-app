@@ -19,5 +19,5 @@ The coding itself took me ...
 Development:
 
 -   Thursday 11pm - 1:30am
--   Friday 9:30am - 13pm // 22:00 - 23:15
--   Saturday 8am - 10am
+-   Friday 9:30am - 13pm // 10pm - 11:15pm
+-   Saturday 8am - 10am // 12:30pm - 1pm

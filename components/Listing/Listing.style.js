@@ -51,6 +51,10 @@ const style = () => ({
                 borderColor: 'gold'
             }
         }
+    },
+
+    '.result': {
+        marginTop: '15px'
     }
 })
 

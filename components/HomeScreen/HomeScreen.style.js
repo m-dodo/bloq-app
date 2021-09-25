@@ -26,7 +26,7 @@ const style = () => ({
         backgroundColor: 'lightgray',
         padding: '20px 30px',
         maxWidth: '1000px',
-        borderRadius: '10px',
+        borderRadius: '5px',
 
         '@media (max-width: 420px)': {
             flexDirection: 'column'
