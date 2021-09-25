@@ -10,15 +10,18 @@ const PostStyled = styled.div(() => ({ ...style() }))
 
 const Post = ({ hello, post, author }) => {
     console.log(hello, 'Post component')
+
     return (
         <PostStyled>
             <Head>
-                <title>Post by {author.name} | BloQ</title>
+                <title>BloQ | {post.title}</title>
                 <link rel="icon" href="/favicon.png" />
             </Head>
-            <Link href="/posts" passHref>
-                <Image src="/back-button.png" width="50" height="50" alt="Back" />
-            </Link>
+            <div className="backImage">
+                <Link href="/posts" passHref>
+                    <Image src="/back-button.png" width="50" height="50" alt="Back" />
+                </Link>
+            </div>
             <h1>{post.title}</h1>
             <p className="postAuthor">Written by: {author.name}</p>
             <hr />

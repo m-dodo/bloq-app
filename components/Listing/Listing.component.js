@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
 import Card from '../Card/Card.component'
 
 import style from './Listing.style'
@@ -21,22 +22,61 @@ const findAuthor = (authors, post) => {
     return authors.find((author) => author.id === post.userId)
 }
 
-const Listing = ({ hello, posts, comments, authors }) => {
+const Listing = ({ hello, h1, posts, comments, authors }) => {
     console.log(hello, 'Listing component')
+
+    const [filteredPosts, setFilteredPosts] = useState(posts)
+    const [search, setSearch] = useState('')
+    const [filter, setFilter] = useState('')
+
+    useEffect(() => {
+        setFilteredPosts(posts.filter((post) => post.title.includes(search.toLowerCase())))
+    }, [search, posts])
+
+    useEffect(() => {
+        setFilteredPosts(
+            posts.filter((post) => {
+                const filteredAuthors = authors.filter((author) =>
+                    author.name.toLowerCase().includes(filter.toLowerCase())
+                )
+                if (filteredAuthors.find((author) => author.id === post.userId)) return true
+                return false
+            })
+        )
+    }, [filter, posts, authors])
+
     return (
         <ListingStyled>
-            <Link href="/" passHref>
-                <Image src="/back-button.png" width="50" height="50" alt="Back" />
-            </Link>
-            <h1>Posts</h1>
+            <div className="backImage">
+                <Link href="/" passHref>
+                    <Image src="/back-button.png" width="50" height="50" alt="Back" />
+                </Link>
+            </div>
+
+            <h1>{h1}</h1>
+
+            <div className="listingOptions">
+                <div className="listingSearch">
+                    <Image src="/search.png" width="33px" height="10px" />
+                    <input placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)} />
+                </div>
+                <div className="listingSearch">
+                    <Image src="/author.png" width="33px" height="10px" />
+                    <input placeholder="Filter by author" value={filter} onChange={(e) => setFilter(e.target.value)} />
+                </div>
+            </div>
+
             <div className="listingCards">
                 {' '}
-                {posts.slice(0, 5).map((post) => (
+                {filteredPosts.slice(0, 20).map((post) => (
                     <Card
                         hello={hello}
                         post={post}
                         comments={filterCommentsByPost(comments, post)}
                         author={findAuthor(authors, post)}
+                        linkHref="/posts/[id]"
+                        linkAs={`/posts/${post.id}`}
+                        linkLabel="Read more"
                     />
                 ))}
             </div>
@@ -46,6 +86,7 @@ const Listing = ({ hello, posts, comments, authors }) => {
 
 Listing.propTypes = {
     hello: PropTypes.string.isRequired,
+    h1: PropTypes.string.isRequired,
     posts: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number

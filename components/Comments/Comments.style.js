@@ -13,7 +13,11 @@ const style = () => ({
         border: 'none',
         fontSize: 15,
         cursor: 'pointer',
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
+
+        ':hover': {
+            background: 'gold'
+        }
     },
 
     '.hide': {
@@ -22,6 +26,10 @@ const style = () => ({
 
     '.commentAuthor': {
         fontWeight: 'bold'
+    },
+
+    '.comment': {
+        maxWidth: '1000px'
     }
 })
 

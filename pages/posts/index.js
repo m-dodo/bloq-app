@@ -11,7 +11,7 @@ const Posts = ({ posts, comments, authors }) => {
                 <title>Posts | BloQ</title>
                 <link rel="icon" href="/favicon.png" />
             </Head>
-            <Listing hello={helloMsg} posts={posts} comments={comments} authors={authors} />
+            <Listing hello={helloMsg} h1="Posts" posts={posts} comments={comments} authors={authors} />
         </>
     )
 }

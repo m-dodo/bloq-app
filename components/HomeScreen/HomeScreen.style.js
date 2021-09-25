@@ -16,6 +16,10 @@ const style = () => ({
         }
     },
 
+    h2: {
+        fontSize: 40
+    },
+
     '& .homepageCta': {
         display: 'flex',
         flexDirection: 'row',
@@ -30,19 +34,27 @@ const style = () => ({
     },
 
     '& .ctaContent': {
-        padding: '50px',
+        padding: '0px 50px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyItems: 'space-between',
 
         '@media (max-width: 420px)': {
             padding: '10px'
         },
 
         '& .ctaButton': {
-            marginTop: '90px',
-            backgroundColor: 'gold',
-            padding: '12px',
+            background: 'linear-gradient(lightgray 50%, gold 50%)',
+            fontWeight: 'bold',
+            fontSize: '18px',
+            padding: '5px',
+            marginLeft: '-2px',
             width: 'fit-content',
             cursor: 'pointer',
-            borderRadius: '10px'
+
+            ':hover': {
+                background: 'gold'
+            }
         }
     },
 

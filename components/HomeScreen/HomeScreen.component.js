@@ -7,25 +7,19 @@ import style from './HomeScreen.style'
 
 const HomeScreenStyled = styled.div(() => ({ ...style() }))
 
-const HomeScreen = ({ hello }) => {
+const HomeScreen = ({ hello, h1, ctaTitle, ctaLabel, buttonLabel, buttonLink }) => {
     console.log(hello, 'HomeScreen component')
     return (
         <HomeScreenStyled>
             <main>
-                <h1 className="homepageTitle">BloQ</h1>
+                <h1 className="homepageTitle">{h1}</h1>
                 <div className="homepageCta">
-                    <Image
-                        className="ctaImage"
-                        src="/imagePlaceholder.png"
-                        width="400"
-                        height="270"
-                        alt="Coffee photo created by wayhomestudio"
-                    />
+                    <Image className="ctaImage" src="/imagePlaceholder.png" width="400" height="270" alt="Image" />
                     <div className="ctaContent">
-                        <h2>Posts</h2>
-                        <p>Hi, wanna read some awesome posts?</p>
-                        <Link href="/posts" passHref>
-                            <div className="ctaButton">Click here</div>
+                        <h2>{ctaTitle}</h2>
+                        <p>{ctaLabel}</p>
+                        <Link href={buttonLink} passHref>
+                            <div className="ctaButton">{buttonLabel}</div>
                         </Link>
                     </div>
                 </div>
@@ -39,5 +33,10 @@ const HomeScreen = ({ hello }) => {
 export default HomeScreen
 
 HomeScreen.propTypes = {
-    hello: PropTypes.string.isRequired
+    hello: PropTypes.string.isRequired,
+    h1: PropTypes.string.isRequired,
+    ctaTitle: PropTypes.string.isRequired,
+    ctaLabel: PropTypes.string.isRequired,
+    buttonLabel: PropTypes.string.isRequired,
+    buttonLink: PropTypes.string.isRequired
 }

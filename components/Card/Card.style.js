@@ -40,12 +40,16 @@ const style = () => ({
     },
 
     '& .cardButton': {
-        backgroundColor: 'gold',
-        padding: '12px',
+        background: 'linear-gradient(lightgray 50%, gold 50%)',
+        fontWeight: 'bold',
+        padding: '5px',
         marginLeft: '-2px',
         width: 'fit-content',
-        borderRadius: '10px',
         cursor: 'pointer',
+
+        ':hover': {
+            background: 'gold'
+        },
 
         '@media (max-width: 420px)': {
             marginTop: '35px'

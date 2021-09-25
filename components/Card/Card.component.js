@@ -8,7 +8,7 @@ import style from './Card.style'
 
 const CardStyled = styled.div(() => ({ ...style() }))
 
-const Card = ({ hello, post, comments, author }) => {
+const Card = ({ hello, post, comments, author, linkHref, linkAs, linkLabel }) => {
     console.log(hello, 'Card component')
 
     return (
@@ -16,12 +16,12 @@ const Card = ({ hello, post, comments, author }) => {
             <div className="cardContent">
                 <Image src="/imagePlaceholder.png" width="150" height="150" alt="Article" />
                 <div className="cardText">
-                    <Link href="/posts/[id]" as={`/posts/${post.id}`} passHref>
+                    <Link href={linkHref} as={linkAs} passHref>
                         <div>
                             {' '}
                             <h3>{post.title}</h3>
                             <p>by {author.name}</p>
-                            <div className="cardButton">Read more</div>
+                            <div className="cardButton">{linkLabel}</div>
                         </div>
                     </Link>
                 </div>
@@ -42,5 +42,8 @@ Card.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     author: PropTypes.shape({
         name: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    linkHref: PropTypes.string.isRequired,
+    linkAs: PropTypes.string.isRequired,
+    linkLabel: PropTypes.string.isRequired
 }
