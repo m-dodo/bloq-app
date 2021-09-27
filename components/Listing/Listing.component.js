@@ -25,18 +25,21 @@ const findAuthor = (authors, post) => {
 const Listing = ({ hello, h1, posts, comments, authors }) => {
     console.log(hello, 'Listing component')
 
-    const [filteredPosts, setFilteredPosts] = useState(posts)
+    const [postsToShow, setPostsToShow] = useState(posts)
+    const [searchedPosts, setSearchedPosts] = useState([])
+    const [filteredPosts, setFilteredPosts] = useState([])
     const [search, setSearch] = useState('')
     const [filter, setFilter] = useState('')
     const [result, setResult] = useState('')
 
     useEffect(() => {
-        setFilteredPosts(posts.filter((post) => post.title.includes(search.toLowerCase())))
-    }, [search, posts])
+        setSearchedPosts(postsToShow.filter((post) => post.title.includes(search.toLowerCase())))
+        setPostsToShow(searchedPosts)
+    }, [search, searchedPosts, postsToShow])
 
     useEffect(() => {
         setFilteredPosts(
-            posts.filter((post) => {
+            postsToShow.filter((post) => {
                 const filteredAuthors = authors.filter((author) =>
                     author.name.toLowerCase().includes(filter.toLowerCase())
                 )
@@ -44,12 +47,13 @@ const Listing = ({ hello, h1, posts, comments, authors }) => {
                 return false
             })
         )
-    }, [filter, posts, authors])
+        setPostsToShow(filteredPosts)
+    }, [filter, filteredPosts, authors, postsToShow])
 
     useEffect(() => {
-        if (filteredPosts.length) setResult(`Found ${filteredPosts.length} post${filteredPosts.length > 1 ? 's' : ''}.`)
-        if (!filteredPosts.length) setResult(`No posts found, try again.`)
-    }, [filteredPosts])
+        if (postsToShow.length) setResult(`Found ${postsToShow.length} post${postsToShow.length > 1 ? 's' : ''}.`)
+        if (!postsToShow.length) setResult(`No posts found, try again.`)
+    }, [postsToShow])
 
     return (
         <ListingStyled>
@@ -75,7 +79,7 @@ const Listing = ({ hello, h1, posts, comments, authors }) => {
 
             <div className="listingCards">
                 {' '}
-                {filteredPosts.map((post) => (
+                {posts.map((post) => (
                     <Card
                         hello={hello}
                         post={post}
