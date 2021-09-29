@@ -11,5 +11,8 @@
                 "extensions": [".js"]
             }
         }
+    },
+    "env": {
+        "jest": true
     }
 }

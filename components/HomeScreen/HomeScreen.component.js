@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Image from 'next/image'
 import Link from 'next/link'
 import styled from '@emotion/styled'
@@ -35,8 +36,13 @@ export default HomeScreen
 HomeScreen.propTypes = {
     hello: PropTypes.string.isRequired,
     h1: PropTypes.string.isRequired,
-    ctaTitle: PropTypes.string.isRequired,
-    ctaLabel: PropTypes.string.isRequired,
+    ctaTitle: PropTypes.string,
+    ctaLabel: PropTypes.string,
     buttonLabel: PropTypes.string.isRequired,
     buttonLink: PropTypes.string.isRequired
+}
+
+HomeScreen.defaultProps = {
+    ctaTitle: '',
+    ctaLabel: ''
 }

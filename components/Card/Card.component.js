@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Link from 'next/link'
 import Image from 'next/image'
 import styled from '@emotion/styled'
@@ -20,13 +21,13 @@ const Card = ({ hello, post, comments, author, linkHref, linkAs, linkLabel }) =>
                         <div>
                             {' '}
                             <h3>{post.title}</h3>
-                            <p>by {author.name}</p>
+                            {author.name && <p>by {author.name}</p>}
                             <div className="cardButton">{linkLabel}</div>
                         </div>
                     </Link>
                 </div>
             </div>
-            <Comments comments={comments} hello={hello} />
+            {comments && <Comments comments={comments} hello={hello} />}
         </CardStyled>
     )
 }

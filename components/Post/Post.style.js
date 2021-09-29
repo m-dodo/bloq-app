@@ -19,7 +19,7 @@ const style = () => ({
 
     h1: {
         fontSize: 72,
-        '@media (max-width: 420px)': {
+        '@media (max-width: 620px)': {
             fontSize: 42
         }
     },

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Link from 'next/link'
 import Image from 'next/image'
 import Head from 'next/head'
@@ -19,11 +20,13 @@ const Post = ({ hello, post, author }) => {
             </Head>
             <div className="backImage">
                 <Link href="/posts" passHref>
-                    <Image src="/back-button.png" width="50" height="50" alt="Back" />
+                    <>
+                        <Image src="/back-button.png" width="50" height="50" alt="Back" />
+                    </>
                 </Link>
             </div>
             <h1>{post.title}</h1>
-            <p className="postAuthor">Written by: {author.name}</p>
+            {author.name && <p className="postAuthor">Written by: {author.name}</p>}
             <hr />
             <div>{post.body}</div>
         </PostStyled>
@@ -41,5 +44,9 @@ Post.propTypes = {
     }).isRequired,
     author: PropTypes.shape({
         name: PropTypes.string
-    }).isRequired
+    })
+}
+
+Post.defaultProps = {
+    author: undefined
 }

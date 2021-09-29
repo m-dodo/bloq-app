@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
 import { useState } from 'react'

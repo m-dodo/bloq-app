@@ -17,6 +17,12 @@ const style = () => ({
         }
     },
 
+    '.right': {
+        position: 'fixed',
+        bottom: 10,
+        right: 30
+    },
+
     h1: {
         fontSize: 72,
         '@media (max-width: 420px)': {
@@ -29,7 +35,7 @@ const style = () => ({
         flexDirection: 'row',
         gap: '30px',
 
-        '@media (max-width: 700px)': {
+        '@media (max-width: 900px)': {
             flexDirection: 'column'
         }
     },

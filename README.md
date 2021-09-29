@@ -2,22 +2,21 @@
 
 Blog-like app posing as skills showcase for Q dev team interview.
 
-### Description
+## Scripts
 
-I'm using React (Next.js framework) with SSR, styled components by Emotion, PropTypes, ...
+Use `npm run dev` to start development server. The app will then be available at `http://localhost:3000/`. Before first start run `npm install`. Use `npm test` to run tests.
 
-### Scripts
+## Description
 
-Use `npm run dev` to start development server. Before first start run `npm install`.
-
-### Time and troubles - WIP
+I'm using React (Next.js framework) with SSR, and Emotion for styling.
 
 In the beginning I had trouble with error saying "Module not found: @emotion/react" even when it was installed.
-It was about latest React version featuring Emotions' `jsx` pragma support under the hood and I had to dig a lot to find it since it is recent. Solved the issue by setting up configuration in `.babelrc`.
-The coding itself took me ...
+It was about latest React version featuring Emotions' `jsx` pragma support under the hood and I had to dig for some time to find it since it is recent. Solved the issue by setting up configuration in `.babelrc`.
 
-Development:
+After that, the coding itself took me about 10 hours.
 
--   Thursday 11pm - 1:30am
--   Friday 9:30am - 13pm // 10pm - 11:15pm
--   Saturday 8am - 10am // 12:30pm - 1pm
+If this was bigger, "real life" app, I would use `react-query` to fetch data. Now I didn't do it because I wasn't sure if that would be considered as third party state management so I used the ordinary `fetch`. I would also implement infinite scroll logic on listing page and break the code into even smaller components - like button component (now I have like two buttons so I didn't separate them).
+
+I have never used TypeScript before so I also skipped it here. Instead, for typechecking, I used PropTypes (and JSDoc annotations for methods).
+
+On the other hand, I also never wrote unit tests before, but here I gave it a try, using Jest. Not sure if my tests fullfill what they should. But I will learn :)

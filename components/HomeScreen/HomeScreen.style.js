@@ -11,7 +11,7 @@ const style = () => ({
         padding: '0px 10px',
         width: 'fit-content',
         background: 'linear-gradient(white 50%, gold 50%)',
-        '@media (max-width: 420px)': {
+        '@media (max-width: 620px)': {
             fontSize: 42
         }
     },
@@ -28,7 +28,7 @@ const style = () => ({
         maxWidth: '1000px',
         borderRadius: '5px',
 
-        '@media (max-width: 420px)': {
+        '@media (max-width: 620px)': {
             flexDirection: 'column'
         }
     },
@@ -39,7 +39,7 @@ const style = () => ({
         flexDirection: 'column',
         justifyItems: 'space-between',
 
-        '@media (max-width: 420px)': {
+        '@media (max-width: 620px)': {
             padding: '10px'
         },
 

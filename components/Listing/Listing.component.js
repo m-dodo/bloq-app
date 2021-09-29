@@ -1,14 +1,22 @@
+/* eslint-disable no-console */
 import Link from 'next/link'
 import Image from 'next/image'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import Card from '../Card/Card.component'
 
 import style from './Listing.style'
 
 const ListingStyled = styled.div(() => ({ ...style() }))
 
+/**
+ * Method to find comments linked to a specific post
+ *
+ * @param {Array} comments
+ * @param {Object} post
+ * @returns {Array}
+ */
 const filterCommentsByPost = (comments, post) => {
     const postComments = []
     comments.forEach((comment) => {
@@ -18,6 +26,13 @@ const filterCommentsByPost = (comments, post) => {
     return postComments
 }
 
+/**
+ * Method to find post author
+ *
+ * @param {Array} authors
+ * @param {Object} post
+ * @returns {Object}
+ */
 const findAuthor = (authors, post) => {
     return authors.find((author) => author.id === post.userId)
 }
@@ -25,41 +40,47 @@ const findAuthor = (authors, post) => {
 const Listing = ({ hello, h1, posts, comments, authors }) => {
     console.log(hello, 'Listing component')
 
-    const [postsToShow, setPostsToShow] = useState(posts)
-    const [searchedPosts, setSearchedPosts] = useState([])
-    const [filteredPosts, setFilteredPosts] = useState([])
     const [search, setSearch] = useState('')
     const [filter, setFilter] = useState('')
     const [result, setResult] = useState('')
 
-    useEffect(() => {
-        setSearchedPosts(postsToShow.filter((post) => post.title.includes(search.toLowerCase())))
-        setPostsToShow(searchedPosts)
-    }, [search, searchedPosts, postsToShow])
+    const filteredPosts = useMemo(() => {
+        if (search && filter) {
+            const postsByTitle = posts.filter((post) => post.title.includes(search.toLowerCase()))
+            const authorByName = authors.filter((author) => author.name.toLowerCase().includes(filter.toLowerCase()))
 
-    useEffect(() => {
-        setFilteredPosts(
-            postsToShow.filter((post) => {
+            const filteredBySearchAndFilter = postsByTitle.filter((post) =>
+                authorByName.some((author) => author.id === post.userId)
+            )
+            return filteredBySearchAndFilter
+        }
+        if (search) {
+            return posts.filter((post) => post.title.includes(search.toLowerCase()))
+        }
+        if (filter) {
+            return posts.filter((post) => {
                 const filteredAuthors = authors.filter((author) =>
                     author.name.toLowerCase().includes(filter.toLowerCase())
                 )
                 if (filteredAuthors.find((author) => author.id === post.userId)) return true
                 return false
             })
-        )
-        setPostsToShow(filteredPosts)
-    }, [filter, filteredPosts, authors, postsToShow])
+        }
+        return posts
+    }, [search, filter, authors, posts])
 
     useEffect(() => {
-        if (postsToShow.length) setResult(`Found ${postsToShow.length} post${postsToShow.length > 1 ? 's' : ''}.`)
-        if (!postsToShow.length) setResult(`No posts found, try again.`)
-    }, [postsToShow])
+        if (filteredPosts.length) setResult(`Found ${filteredPosts.length} post${filteredPosts.length > 1 ? 's' : ''}.`)
+        if (!filteredPosts.length) setResult(`No posts found, try again.`)
+    }, [filteredPosts])
 
     return (
         <ListingStyled>
-            <div className="backImage">
+            <div id="top" className="backImage">
                 <Link href="/" passHref>
-                    <Image src="/back-button.png" width="50" height="50" alt="Back" />
+                    <>
+                        <Image src="/back-button.png" width="50" height="50" alt="Back" />
+                    </>
                 </Link>
             </div>
 
@@ -79,8 +100,9 @@ const Listing = ({ hello, h1, posts, comments, authors }) => {
 
             <div className="listingCards">
                 {' '}
-                {posts.map((post) => (
+                {filteredPosts.map((post) => (
                     <Card
+                        key={post.id}
                         hello={hello}
                         post={post}
                         comments={filterCommentsByPost(comments, post)}
@@ -91,6 +113,9 @@ const Listing = ({ hello, h1, posts, comments, authors }) => {
                     />
                 ))}
             </div>
+            <a className="backImage right" href="#top">
+                <Image src="/up-arrow.png" width="50" height="50" alt="To top" />
+            </a>
         </ListingStyled>
     )
 }
